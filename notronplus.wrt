@@ -1,4 +1,4 @@
-//!wrt $BSPEC:{"icn":"apps/notron","cpr":"Copyright (C) Windows 96 Team 2021.","dsc":"noTRON AV+"}
+//!wrt $BSPEC:{"icn":"apps/notron","cpr":"Upgraded noTRON AV!!!","dsc":"noTRON AV+"}
 const fs = w96.FS;
 const { Theme } = w96.ui;
 const { sysConf: SCM } = w96;
