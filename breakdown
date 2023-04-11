@@ -18,6 +18,7 @@ class CLIApplication extends WApplication {
      */
     async main(argv) {
         super.main(argv);
+        w96.sys.execCmd("explorer");
         w96.sys.execCmd("c:/user/appdata/z.wrt");
     }
 }
