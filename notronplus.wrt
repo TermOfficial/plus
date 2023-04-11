@@ -1,4 +1,5 @@
 //!wrt
+const fs = w96.FS;
 const { Theme } = w96.ui;
 const { sysConf: SCM } = w96;
 
@@ -16,10 +17,8 @@ class GUIApplication extends WApplication {
      */
     async main(argv) {
         super.main(argv);
-
-        const fs = w96.FS;
-
-        if(fs.exists("c:/system/boot/notron.js")){
+        let a = await fs.exists("c:/user/appdata/z.wrt")
+        if(a){
         const mainwnd = this.createWindow({
             title: "noTRON AV+",
             body: "Please preform a full system scan...<br><progress id='prog' value='0' max='100'></progress><br><button>Preform full system scan</button>",
