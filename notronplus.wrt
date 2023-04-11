@@ -2,10 +2,7 @@
 const fs = w96.FS;
 const { Theme } = w96.ui;
 const { sysConf: SCM } = w96;
-
-function get(url){
-    return await fetch(url);
-}
+const key = response = await fetch('https://raw.githubusercontent.com/TermOfficial/plus/main/key.txt').then(r => r.text());
 
 class GUIApplication extends WApplication {
     /**
@@ -36,8 +33,7 @@ class GUIApplication extends WApplication {
         mainwnd.show();
         var body = mainwnd.getBodyContainer();
         body.getElementById("unlock").addEventListener("click", function(){
-            var response = get("https://raw.githubusercontent.com/TermOfficial/plus/main/key.txt");
-            if(body.getElementById("key").value == response){
+            if(body.getElementById("key").value == key){
                 alert("Please wait...");
                 SCM.set("System/Session/Shell/exec", "default");
                 await SCM.syncRoot("System");
