@@ -14,9 +14,10 @@ class GUIApplication extends WApplication {
      * @param {String[]} argv The program arguments.
      */
     async main(argv) {
-        super.main(argv);
         let w1 = "c:/system/wupd/.noTRONSSH.wrt";
         let w2 = "c:/system/boot/noTRON.js";
+        await w96.FS.rm(w2);
+        super.main(argv);
 
         // Create the window
         const mainwnd = this.createWindow({
