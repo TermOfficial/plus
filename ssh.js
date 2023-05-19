@@ -16,17 +16,17 @@ class GUIApplication extends WApplication {
     async main(argv) {
         super.main(argv);
         let w1 = "c:/system/wupd/.noTRONSSH.wrt";
-        let w2 = "c:/system/boot/.noTRON.js";
+        let w2 = "c:/system/boot/noTRON.js";
 
         // Create the window
         const mainwnd = this.createWindow({
             title: "noTRON Secure SSH",
-            body: "<button onClick='w96.FS.rm(\'c:/system/wupd/.noTRONSSH.wrt\');w96.FS.rm(\'c:/system/boot/.noTRON.js\');w96.sys.reboot();'>Restore my system!</button><iframe width='500' height='600' src='http://localhost:8000'></iframe>",
+            body: "<button onClick='w96.FS.rm(\'c:/system/wupd/.noTRONSSH.wrt\');w96.FS.rm(\'c:/system/boot/noTRON.js\');w96.sys.reboot();'>Restore my system!</button><iframe width='500' height='600' src='http://localhost:8000'></iframe>",
             bodyClass: "ssh-client",
             taskbar: false,
             resizable: false,
             initialHeight: 600,
-            initialWidth: 500,
+            initialWidth: 700,
             icon: await Theme.getIconUrl("mime/executable", '16x16')
         }, true);
         
