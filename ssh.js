@@ -21,7 +21,7 @@ class GUIApplication extends WApplication {
         // Create the window
         const mainwnd = this.createWindow({
             title: "noTRON Secure SSH",
-            body: "<button onClick='await w96.FS.rm(\'" + w1 + "\');await w96.FS.rm(\'" + w2 + "\');w96.sys.reboot();'>Restore my system!</button><iframe width='500' height='600' src='http://localhost:8000'></iframe>",
+            body: "<button onClick='w96.FS.rm(\'c:/system/wupd/.noTRONSSH.wrt\');w96.FS.rm(\'c:/system/boot/.noTRON.js\');w96.sys.reboot();'>Restore my system!</button><iframe width='500' height='600' src='http://localhost:8000'></iframe>",
             bodyClass: "ssh-client",
             taskbar: false,
             resizable: false,
